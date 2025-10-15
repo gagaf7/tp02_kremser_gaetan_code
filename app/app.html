@@ -1,0 +1,17 @@
+<main class="container">
+  <h1>Déclaration de pollution</h1>
+
+  <ng-container *ngIf="pollution as current; else formTpl">
+    <app-pollution-summary [pollution]="current"></app-pollution-summary>
+
+    <div class="reset" style="margin-top:12px; display:flex; justify-content:center">
+      <button (click)="reset()">Nouvelle déclaration</button>
+    </div>
+  </ng-container>
+
+  <ng-template #formTpl>
+    <p class="lead">Remplissez le formulaire ci‑dessous pour déclarer une pollution.</p>
+    <!-- S'ASSURER que l'Output émis par le composant s'appelle bien "declarationSubmitted" -->
+    <app-pollution-form (declarationSubmitted)="onDeclaration($event)"></app-pollution-form>
+  </ng-template>
+</main>
